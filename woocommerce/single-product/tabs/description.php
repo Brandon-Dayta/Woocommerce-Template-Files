@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Product tabs
+ * Description tab
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/single-product/tabs/tabs.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/tabs/description.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -10,47 +10,21 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
+ * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.8.0
+ * @version 2.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
-/**
- * Filter tabs and allow third parties to add their own.
- *
- * Each tab is an array containing title, callback and priority.
- *
- * @see woocommerce_default_product_tabs()
- */
-$product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
+global $post;
 
-if ( ! empty( $product_tabs ) ) : ?>
+$heading = apply_filters( 'woocommerce_product_description_heading', __( 'Description', 'woocommerce' ) );
 
-	<div class="woocommerce-tabs wc-tabs-wrapper">
-		<ul class="tabs wc-tabs" role="tablist">
-			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-				<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
-					<a href="#tab-<?php echo esc_attr( $key ); ?>">
-						<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-		<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-			<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
-				<?php
-				if ( isset( $product_tab['callback'] ) ) {
-					call_user_func( $product_tab['callback'], $key, $product_tab );
-				}
-				?>
-			</div>
-		<?php endforeach; ?>
+?>
 
-		<?php do_action( 'woocommerce_product_after_tabs' ); ?>
-	</div>
-
+<?php if ( $heading ) : ?>
+	<h2><?php echo esc_html( $heading ); ?></h2>
 <?php endif; ?>
+
+<?php the_content(); ?>
