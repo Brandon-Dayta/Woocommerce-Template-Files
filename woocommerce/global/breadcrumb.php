@@ -10,9 +10,8 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
+ * @see         https://docs.woocommerce.com/document/template-structure/
+ * @package     WooCommerce\Templates
  * @version     2.3.0
  * @see         woocommerce_breadcrumb()
  */
@@ -20,48 +19,28 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-?>
 
-<!-- <div class="inner_banner full_sec">
-	<div class="container">
-		<?php 
-		// if(is_shop()){
-		// 	echo '<h1 class="entry-title">Products</h1>';
-		// }else{
-		// 	the_title( '<h1 class="entry-title">', '</h1>' );
-		// }
-		 ?>	
-		<?php /*if ( ! empty( $breadcrumb ) ) {
+if ( ! empty( $breadcrumb ) ) {
 
-				echo $wrap_before;
+	echo $wrap_before;
 
-				foreach ( $breadcrumb as $key => $crumb ) {
+	foreach ( $breadcrumb as $key => $crumb ) {
 
-					if($crumb[0] == 'Shop'){
-						$crumb[0] = 'Products';
-					}
-					echo $before;
+		echo $before;
 
-					if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
-						
-						echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
-					} else {
-						echo esc_html( $crumb[0] );
-					}
+		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
+			echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
+		} else {
+			echo esc_html( $crumb[0] );
+		}
 
-					 
-					echo $after;
+		echo $after;
 
+		if ( sizeof( $breadcrumb ) !== $key + 1 ) {
+			echo $delimiter;
+		}
+	}
 
-					if ( sizeof( $breadcrumb ) !== $key + 1 ) {
-						echo $delimiter;
-					}
-				}
+	echo $wrap_after;
 
-				echo $wrap_after;
-
-			}*/ ?>
-	</div>
-</div> -->
-
-
+}
